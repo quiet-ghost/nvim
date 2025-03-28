@@ -13,6 +13,6 @@ lazy.setup({
     },
   },
   rocks = {
-    enabled = true, -- Disable luarocks entirely
+    enabled = false, -- Disable luarocks entirely
   },
 })

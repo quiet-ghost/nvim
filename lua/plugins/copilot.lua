@@ -4,34 +4,21 @@ return {
   dependencies = { "zbirenbaum/copilot-cmp" },
   config = function()
     require("copilot").setup({
-      suggestion = { enabled = false }, -- Use copilot-cmp instead
-      panel = { enabled = false },
+      suggestion = { enabled = true }, -- Disable built-in suggestions (use copilot-cmp)
+      panel = { enabled = false },      -- Disable panel
+      filetypes = {
+        ["*"] = true,                  -- Enable for all filetypes
+      },
     })
     require("copilot_cmp").setup()
+    require("copilot.suggestion").is_visible()
+    require("copilot.suggestion").accept(modifier)
+    require("copilot.suggestion").accept_word()
+    require("copilot.suggestion").accept_line()
+    require("copilot.suggestion").next()
+    require("copilot.suggestion").prev()
+    require("copilot.suggestion").dismiss()
+    require("copilot.suggestion").toggle_auto_trigger()
+    -- Integrate with nvim-cmp
   end,
-  -- Integrate with nvim-cmp for tab completion
-  {
-    "hrsh7th/nvim-cmp",
-    config = function()
-      local cmp = require("cmp")
-      cmp.setup({
-        sources = {
-          { name = "copilot" },
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
-        },
-        mapping = {
-          ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-Space>"] = cmp.mapping.complete(),
-        },
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
-        },
-      })
-    end,
-  },
 }
