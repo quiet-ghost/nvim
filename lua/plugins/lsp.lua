@@ -15,8 +15,9 @@ return {
   config = function()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     require('lspconfig').lua_ls.setup {
-      capabilities = capabilities,
+      capabilities = capabilities
     }
+
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
@@ -174,11 +175,11 @@ return {
           },
         },
       },
-    },
+    }
 
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format Lua code
+      'stylua',
       'tailwindcss',
       'cssls',
       'html',
@@ -187,9 +188,9 @@ return {
       'jsonls',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
+    
     require('mason-lspconfig').setup {
-      ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+      ensure_installed = {},
       automatic_installation = false,
       handlers = {
         function(server_name)
