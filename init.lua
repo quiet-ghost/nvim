@@ -14,3 +14,4 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load LazyVim
 require("config.lazy")
+
