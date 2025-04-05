@@ -1,6 +1,9 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+--
+--
+--
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "File Explorer" }) -- Open file explorer
 
@@ -31,4 +34,14 @@ vim.keymap.set("n", "<leader>f", function()
   vim.lsp.buf.format({ async = true })
 end, { desc = "Format current buffer" }) -- Format current buffer
 
-vim.keymap.set("n", "<leader>s", "%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Replace word under cursor" }) -- Replace word under cursor
+vim.keymap.set(
+  "n",
+  "<leader>s",
+  "%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+  { desc = "Replace word under cursor" }
+) -- Replace word under cursor
+
+vim.keymap.set("n", "<C-k>", "<C-w> k")
+vim.keymap.set("n", "<C-j>", "<C-w> j")
+vim.keymap.set("n", "<C-h>", "<C-w> h")
+vim.keymap.set("n", "<C-l>", "<C-w> l")
