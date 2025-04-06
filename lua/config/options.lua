@@ -4,7 +4,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.scrolloff = 8          -- Keep 8 lines visible above/below cursor
+vim.opt.scrolloff = 8 -- Keep 8 lines visible above/below cursor
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
@@ -23,13 +23,17 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
-vim.opt.signcolumn = "yes"    -- Always show the sign column
+vim.opt.signcolumn = "yes" -- Always show the sign column
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
-
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+
+--Terminal
+vim.opt.shell = [["C:\Program Files\Git\bin\bash.exe"]]
+vim.opt.shellcmdflag = "-w 0"
+vim.opt.shellxquote = ""
