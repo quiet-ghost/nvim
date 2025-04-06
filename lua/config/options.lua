@@ -34,6 +34,17 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
 --Terminal
-vim.opt.shell = [["C:\Program Files\Git\bin\bash.exe"]]
-vim.opt.shellcmdflag = "-w 0"
-vim.opt.shellxquote = ""
+local function setup_terminal()
+  local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+  if is_windows then
+    vim.opt.shell = [[C:\Program Files\Git\bin\bash.exe]]
+    vim.opt.shellcmdflag = "-w 0"
+    vim.opt.shellxquote = ""
+  else
+    vim.opt.shell = "/bin/zsh"
+    vim.opt.shellcmdflag = "-c"
+    vim.opt.shellxquote = "'"
+  end
+end
+
+setup_terminal()
