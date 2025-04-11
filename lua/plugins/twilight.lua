@@ -1,8 +1,9 @@
 return {
   "folke/twilight.nvim",
   opts = {
-    dimming = { alpha = 0.25 }, -- Dimming opacity
-    context = 10,               -- Lines of context to keep visible
+    dimming = { alpha = 0.15 }, -- Dimming opacity
+    context = 20, -- Lines of context to keep visible
+    treesitter = true,
   },
   -- Load lazily but ensure it's ready on startup
   lazy = false,

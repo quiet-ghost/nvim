@@ -1,9 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
---
---
---
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "File Explorer" }) -- Open file explorer
 
@@ -41,10 +35,9 @@ vim.keymap.set(
   { desc = "Replace word under cursor" }
 ) -- Replace word under cursor
 
-vim.keymap.set("n", "<C-k>", "<C-w> k")
-vim.keymap.set("n", "<C-j>", "<C-w> j")
-vim.keymap.set("n", "<C-h>", "<C-w> h")
-vim.keymap.set("n", "<C-l>", "<C-w> l")
+--------------------------------------------------------------------------------
+-- HARPOON SETTINGS --
+--------------------------------------------------------------------------------
 
 --HARPOON settings
 local harpoon = require("harpoon")
@@ -60,16 +53,16 @@ end)
 vim.keymap.set("n", "<C-e>", function()
   harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
-vim.keymap.set("n", "<C-h>", function()
+vim.keymap.set("n", "<leader>1>", function()
   harpoon:list():select(1)
 end)
-vim.keymap.set("n", "<C-j>", function()
+vim.keymap.set("n", "<leader>2>", function()
   harpoon:list():select(2)
 end)
-vim.keymap.set("n", "<C-k>", function()
+vim.keymap.set("n", "<leader>3>", function()
   harpoon:list():select(3)
 end)
-vim.keymap.set("n", "<C-l>", function()
+vim.keymap.set("n", "<leader>4>", function()
   harpoon:list():select(4)
 end)
 

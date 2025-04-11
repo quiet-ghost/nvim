@@ -33,6 +33,29 @@ vim.opt.colorcolumn = "80"
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+-- Helper function to check if a value is empty
+local function isempty(s)
+  return s == nil or s == ""
+end
+
+-- Helper function to use a fallback if the primary value is undefined
+local function use_if_defined(primary, fallback)
+  return isempty(primary) and fallback or primary
+end
+
+-- Check if an environment is active at startup
+local conda_prefix = os.getenv("CONDA_PREFIX")
+if not isempty(conda_prefix) then
+  -- Use the active Conda environment if one is set
+  vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, conda_prefix .. "/bin/python")
+  vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, conda_prefix .. "/bin/python")
+else
+  -- Defer to VenvSelector by not setting a default; it will handle this
+  -- Optionally set a fallback system Python if VenvSelector isn't used
+  vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, "python")
+  vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, "python3")
+end
+
 local function setup_terminal()
   local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
   if is_windows then
