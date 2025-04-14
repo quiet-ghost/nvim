@@ -28,9 +28,10 @@ map("n", "<leader>dt", "<cmd>DapTerminate<CR>", { desc = "Terminate" })
 map("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
 
 -- Which-Key
--- map("n", "<leader>?", "<cmd>WhichKey<CR>", { desc = "Show Which-Key" })
+map("n", "<leader>?", "<cmd>WhichKey<CR>", { desc = "Show Which-Key" })
 
 -- LazyGit
+map("n", "lg", "<cmd>LazyGit<CR>", { desc = "LazyGit" })
 
 -- Special keymaps
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" }) -- Move selected lines down
