@@ -6,6 +6,9 @@ return {
       "nvim-neotest/nvim-nio",
       "theHamsta/nvim-dap-virtual-text",
     },
+    opts = {
+      dap_ui = "default",
+    },
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
