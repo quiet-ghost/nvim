@@ -10,6 +10,7 @@ vim.opt.breakindent = true
 vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.smartindent = true
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
