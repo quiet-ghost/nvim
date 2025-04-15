@@ -127,7 +127,7 @@ map("n", "<leader>gI", function() require("telescope.builtin").lsp_implementatio
 map("n", "<leader>ld", function() require("telescope.builtin").lsp_type_definitions() end, { desc = "Type Definition" })
 map("n", "<leader>ls", function() require("telescope.builtin").lsp_document_symbols() end, { desc = "Document Symbols" })
 map("n", "<leader>lw", function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end, { desc = "Workspace Symbols" })
-map("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename" })
+map("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename" })
 map({ "n", "x" }, "<leader>lc", vim.lsp.buf.code_action, { desc = "Code Action" })
 map("n", "<leader>gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous Diagnostic" })
@@ -138,3 +138,37 @@ map("n", "<leader>lh", function()
   vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
 end, { desc = "Toggle Inlay Hints" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+
+-- Flash.nvim
+map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash Jump" })
+map({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
+map({ "n", "x", "o" }, "<leader>fs", function() require("flash").jump({ search = { mode = "search" } }) end, { desc = "Flash Search" })
+map("o", "r", function() require("flash").remote() end, { desc = "Flash Remote" })
+
+-- TODO Keys
+map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find TODOs" })
+
+-- Bufferline
+map("n", "<leader>bt", function()
+  local bufferline = require("bufferline")
+  local current_state = vim.g.bufferline_always_show or false
+  vim.g.bufferline_always_show = not current_state
+  bufferline.setup({
+    options = {
+      always_show_bufferline = vim.g.bufferline_always_show,
+    },
+  })
+  if vim.g.bufferline_always_show then
+    vim.notify("Bufferline always shown", vim.log.levels.INFO)
+  else
+    vim.notify("Bufferline shown only with multiple buffers", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle Bufferline" })
+
+-- Trouble.nvim
+map("n", "<leader>t", "<cmd>TroubleToggle<cr>", { desc = "Toggle Trouble" })
+map("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace Diagnostics" }) -- Override previous Telescope binding
+map("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document Diagnostics" }) -- Override previous Telescope binding
+map("n", "<leader>qf", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix" })
+map("n", "<leader>ll", "<cmd>TroubleToggle loclist<cr>", { desc = "Location List" })
+map("n", "<leader>lr", "<cmd>TroubleToggle lsp_references<cr>", { desc = "LSP References" }) -- Override previous rename binding

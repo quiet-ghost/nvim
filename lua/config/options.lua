@@ -30,6 +30,7 @@ vim.opt.signcolumn = "yes" -- Always show the sign column
 vim.opt.isfname:append("@-@")
 vim.opt.colorcolumn = "80"
 
+
 -- Python setup
 local conda_prefix = os.getenv("CONDA_PREFIX")
 if conda_prefix and conda_prefix ~= "" then
