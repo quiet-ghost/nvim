@@ -10,13 +10,48 @@ map("n", "<C-k>", "<C-w>k", { desc = "Move to above window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Terminal
-map("n", "<C-_>", function()
-  vim.cmd("belowright split | terminal")
-  vim.cmd("startinsert")
-  vim.cmd("resize 10")
-end, { desc = "Open terminal in horizontal split" })
-map("t", "<C-_>", "<C-\\><C-n>:q<CR>", { desc = "Close terminal" })
+vim.g.terminal_buf = nil
+vim.g.terminal_win = nil
 
+map("n", "<C-_>", function()
+  -- If the terminal buffer doesn't exist, create a new one
+  if not vim.g.terminal_buf or not vim.api.nvim_buf_is_valid(vim.g.terminal_buf) then
+    -- Open a new terminal in a horizontal split
+    vim.cmd("belowright split")
+    vim.cmd("terminal")
+    -- Set buffer options to hide it from bufferline
+    vim.api.nvim_buf_set_option(0, "buflisted", false)
+    vim.api.nvim_buf_set_option(0, "bufhidden", "hide")
+    -- Store the buffer and window numbers
+    vim.g.terminal_buf = vim.api.nvim_get_current_buf()
+    vim.g.terminal_win = vim.api.nvim_get_current_win()
+    -- Resize the terminal window
+    vim.cmd("resize 10")
+    -- Enter insert mode
+    vim.cmd("startinsert")
+  else
+    -- If the terminal window is open, close it
+    if vim.g.terminal_win and vim.api.nvim_win_is_valid(vim.g.terminal_win) then
+      vim.api.nvim_win_close(vim.g.terminal_win, true)
+      vim.g.terminal_win = nil
+    else
+      -- Otherwise, reopen the terminal in a split
+      vim.cmd("belowright split")
+      vim.api.nvim_win_set_buf(0, vim.g.terminal_buf)
+      vim.g.terminal_win = vim.api.nvim_get_current_win()
+      vim.cmd("resize 10")
+      vim.cmd("startinsert")
+    end
+  end
+end, { desc = "Toggle terminal in horizontal split" })
+
+map("t", "<C-_>", function()
+  -- Close the terminal window but keep the buffer
+  if vim.g.terminal_win and vim.api.nvim_win_is_valid(vim.g.terminal_win) then
+    vim.api.nvim_win_close(vim.g.terminal_win, true)
+    vim.g.terminal_win = nil
+  end
+end, { desc = "Hide terminal" })
 
 -- Telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
