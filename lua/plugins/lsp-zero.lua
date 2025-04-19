@@ -97,7 +97,7 @@ return {
                   functionReturnTypes = true,
                 },
                 typeCheckingMode = "strict",
-                diagnosticMode = "workspace",
+                diagnosticMode = "openFilesOnly",
                 diagnosticSeverityOverrides = {
                   reportGeneralTypeIssues = "warning",
                   reportOptionalMemberAccess = "warning",
