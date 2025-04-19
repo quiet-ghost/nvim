@@ -1,4 +1,3 @@
--- C:\Users\<YourUsername>\AppData\Local\nvim\lua\plugins\lsp.lua
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -28,8 +27,8 @@ return {
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
-        cpp = { "clang-format" }, -- Changed from "clangd" (LSP) to formatter
-        sql = { "sql-formatter" }, -- Changed from "sqlls" (LSP) to formatter
+        cpp = { "clang-format" },
+        sql = { "sql-formatter" },
       },
     })
 
@@ -61,6 +60,9 @@ return {
       },
       handlers = {
         function(server_name) -- Default handler
+          if server_name == "ruff" or server_name == "ruff_lsp" then
+            return
+          end
           require("lspconfig")[server_name].setup({
             capabilities = capabilities,
           })
@@ -85,45 +87,40 @@ return {
           })
         end,
         ["pyright"] = function()
-          require("lspconfig").pyright.setup({
-            capabilities = capabilities,
-            settings = {
-              python = {
-                analysis = {
-                  inlayHints = {
-                    variableTypes = true,
-                    functionReturnTypes = true,
-                  },
+        require("lspconfig").pyright.setup({
+          capabilities = capabilities,
+          settings = {
+            python = {
+              analysis = {
+                inlayHints = {
+                  variableTypes = true,
+                  functionReturnTypes = true,
                 },
-              },
-            },
-          })
-        end,
-        ["pylsp"] = function()
-          require("lspconfig").pylsp.setup({
-            capabilities = capabilities,
-            settings = {
-              pylsp = {
-                plugins = {
-                  rope_rename = { enabled = false },
-                  pycodestyle = { enabled = false }, -- Disable to avoid conflicts with black
-                  flake8 = { enabled = false }, -- Use conform.nvim for linting
-                },
-              },
-            },
-          })
-        end,
+                typeCheckingMode = "strict",
+                diagnosticMode = "openFilesOnly",
+                diagnosticSeverityOverrides = {
+                  reportGeneralTypeIssues = "warning",
+                  reportOptionalMemberAccess = "warning",
+                  reportOptionalCall = "warning",
+                  reportMissingImports = "error",
+                  reportUndefinedVariable = "error",
+          },
+        },
       },
+    },
+  })
+end      },
     })
 
     -- Configure diagnostics
     vim.diagnostic.config({
       virtual_text = {
-        severity = { min = vim.diagnostic.severity.ERROR },
-        source = "if_many",
+        severity = { min = vim.diagnostic.severity.WARN },
+        source = true,
         format = function(diagnostic)
           return string.format("%s: %s", diagnostic.source, diagnostic.message)
         end,
+        spacing = 4,
       },
       signs = {
         text = {
@@ -146,7 +143,16 @@ return {
       severity_sort = true,
     })
 
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+      callback = function()
+        vim.defer_fn(function()
+          vim.diagnostic.show(nil, 0)
+        end, 100)
+      end,
+    })
+
     -- Enable inlay hints globally
     vim.lsp.inlay_hint.enable(false)
   end,
 }
+
