@@ -2,7 +2,8 @@ local map = vim.keymap.set
 
 -- General keymaps
 map("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw" })
-map("n", "<m-n>", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
+-- map("n", "<m-n>", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
+map("n", "<m-n>", function() Snacks.explorer() end, { desc = "Snacks Explorer" })
 map("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Move to below window" })
 map("n", "<C-k>", "<C-w>k", { desc = "Move to above window" })
