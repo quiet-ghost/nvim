@@ -9,6 +9,15 @@ map("n", "<C-j>", "<C-w>j", { desc = "Move to below window" })
 map("n", "<C-k>", "<C-w>k", { desc = "Move to above window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
+-- Terminal
+map("n", "<C-_>", function()
+  vim.cmd("belowright split | terminal")
+  vim.cmd("startinsert")
+  vim.cmd("resize 10")
+end, { desc = "Open terminal in horizontal split" })
+map("t", "<C-_>", "<C-\\><C-n>:q<CR>", { desc = "Close terminal" })
+
+
 -- Telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
 map("n", "<leader><leader>", "<cmd>Telescope oldfiles<CR>", { desc = "Recent files" })
@@ -59,7 +68,7 @@ map("n", "Q", "<nop>", { desc = "Disable Q" }) -- Disable Q
 
 map("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "tmux sessionizer" }) -- tmux sessionizer
 map("n", "<leader>f", function()
-	vim.lsp.buf.format({ async = true })
+	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format current buffer" }) -- Format current buffer
 
 map("n", "<leader>s", "%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Replace word under cursor" }) -- Replace word under cursor
