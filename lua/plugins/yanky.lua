@@ -1,4 +1,3 @@
--- C:\Users\<YourUsername>\AppData\Local\nvim\lua\plugins\yanky.lua
 return {
 	"gbprod/yanky.nvim",
 	event = { "BufReadPost", "BufNewFile" },
