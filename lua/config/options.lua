@@ -30,6 +30,7 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes" -- Always show the sign column
 vim.opt.isfname:append("@-@")
 vim.opt.colorcolumn = "80"
+vim.opt.laststatus = 3
 
 
 -- Python setup
