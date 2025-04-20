@@ -217,3 +217,4 @@ map("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "
 map("n", "<leader>qf", "<cmd>TroubleToggle quickfix<cr>", { desc = "Quickfix" })
 map("n", "<leader>ll", "<cmd>TroubleToggle loclist<cr>", { desc = "Location List" })
 map("n", "<leader>lr", "<cmd>TroubleToggle lsp_references<cr>", { desc = "LSP References" }) -- Override previous rename binding
+map("n", "<leader>lr", "<cmd>TroubleToggle lsp_references<cr>", { desc = "LSP References" }) -- Override previous rename binding
