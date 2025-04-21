@@ -27,21 +27,10 @@ vim.opt.expandtab = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
-vim.opt.signcolumn = "yes" -- Always show the sign column
+vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.colorcolumn = "80"
 vim.opt.laststatus = 3
-
-
--- Python setup
-local conda_prefix = os.getenv("CONDA_PREFIX")
-if conda_prefix and conda_prefix ~= "" then
-  vim.g.python_host_prog = conda_prefix .. "/bin/python"
-  vim.g.python3_host_prog = conda_prefix .. "/bin/python"
-else
-  vim.g.python_host_prog = "python"
-  vim.g.python3_host_prog = "python3"
-end
 
 -- Terminal setup
 local function setup_terminal()
