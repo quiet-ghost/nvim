@@ -39,3 +39,9 @@ map("n", "<leader>f", function()
 end, { desc = "Format current buffer" }) -- Format current buffer
 
 map("n", "<leader>s", "%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Replace word under cursor" }) -- Replace word under cursor- Keymaps are automatically loaded on the VeryLazy event
+
+-- TODO Keys
+map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find TODOs" })
+
+-- Undotree
+map("n", "<C-n>", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
