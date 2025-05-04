@@ -31,6 +31,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.colorcolumn = "80"
 vim.opt.laststatus = 3
+vim.g.lazyvim_markdown = false
+vim.opt.conceallevel = 2
 
 -- Terminal setup
 local function setup_terminal()

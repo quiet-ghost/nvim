@@ -45,3 +45,23 @@ map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find TODOs" })
 
 -- Undotree
 map("n", "<C-n>", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
+
+-- CodeCompanion keymaps
+map("n", "<leader>aa", "<cmd>CodeCompanionChat<CR>", { desc = "Open CodeCompanion chat" })
+map("n", "<leader>ap", "<cmd>CodeCompanionActions<CR>", { desc = "CodeCompanion actions palette" })
+map("v", "<leader>ae", "<cmd>CodeCompanion explain<CR>", { desc = "Explain selected code" })
+map("v", "<leader>af", "<cmd>CodeCompanion fix<CR>", { desc = "Fix selected code" })
+map("v", "<leader>ar", "<cmd>CodeCompanion refactor<CR>", { desc = "Refactor selected code" })
+
+-- CodeCompanion chat buffer keymaps
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "codecompanion",
+  callback = function()
+    map("n", "<C-s>", "<cmd>CodeCompanionSave<CR>", { buffer = true, desc = "Save chat buffer" })
+    map("n", "q", "<cmd>CodeCompanionClose<CR>", { buffer = true, desc = "Close chat buffer" })
+  end,
+})
+
+-- CodeCompanion Code Actions
+map("v", "<leader>cx", "<cmd>CodeCompanion fix<CR>", { desc = "Fix selected code" })
+map("v", "<leader>ct", "<cmd>CodeCompanion tests<CR>", { desc = "Generate tests for selected code" })
