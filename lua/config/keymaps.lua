@@ -65,3 +65,16 @@ vim.api.nvim_create_autocmd("FileType", {
 -- CodeCompanion Code Actions
 map("v", "<leader>cx", "<cmd>CodeCompanion fix<CR>", { desc = "Fix selected code" })
 map("v", "<leader>ct", "<cmd>CodeCompanion tests<CR>", { desc = "Generate tests for selected code" })
+
+-- Telescope keymaps
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
+map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Find text" })
+map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Find buffers" })
+map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Find help" })
+map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Find old files" })
+map("n", "<leaderfs", "<cmd>Telescope git_status<CR>", { desc = "Find git status" })
+map("n", "<leader>gd", "<cmd>Telescope builtin goto_definition<CR>", { desc = "Find definition" })
+map("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", { desc = "Find references" })
+map("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Find implementations" })
+map("n", "<leader>gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "Find type definitions" })
+map("n", "<leader>gd", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Find document symbols" })
