@@ -12,7 +12,6 @@
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.cmake",
     "lazyvim.plugins.extras.lang.go",
-    "lazyvim.plugins.extras.lang.java",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.python",
@@ -23,7 +22,8 @@
     "lazyvim.plugins.extras.lsp.none-ls",
     "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.ui.treesitter-context",
-    "lazyvim.plugins.extras.util.dot"
+    "lazyvim.plugins.extras.util.dot",
+    "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
   "install_version": 8,
   "news": {

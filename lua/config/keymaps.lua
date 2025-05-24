@@ -65,3 +65,27 @@ vim.api.nvim_create_autocmd("FileType", {
 -- CodeCompanion Code Actions
 map("v", "<leader>cx", "<cmd>CodeCompanion fix<CR>", { desc = "Fix selected code" })
 map("v", "<leader>ct", "<cmd>CodeCompanion tests<CR>", { desc = "Generate tests for selected code" })
+
+-- Java keymaps
+map("n", "<leader>jr", "<cmd>JavaRunnerRunMain<CR>", { desc = "Run Java Main" })
+map("n", "<leader>jt", "<cmd>JavaTestRun<CR>", { desc = "Run Java Test" })
+map("n", "<leader>jd", "<cmd>JavaDapConfig<CR>", { desc = "Configure Java DAP" })
+map("n", "<leader>jsr", "<cmd>JavaSpringBootRun<CR>", { desc = "Run Spring Boot Application" })
+map("n", "<leader>jsc", "<cmd>JavaSpringBootGenerateController<CR>", { desc = "Generate Spring Controller" })
+map("n", "<leader>jsm", "<cmd>JavaSpringBootGenerateModel<CR>", { desc = "Generate Spring Model" })
+map("n", "<leader>jss", "<cmd>JavaSpringBootGenerateService<CR>", { desc = "Generate Spring Service" })
+map("n", "<leader>jo", "<cmd>JavaOrganizeImports<CR>", { desc = "Organize Java Imports" })
+map("n", "<leader>jf", "<cmd>JavaFormat<CR>", { desc = "Format Java File" })
+
+-- DAP keymaps
+map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
+map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "DAP Toggle Breakpoint" })
+map("n", "<leader>ds", "<cmd>DapStepOver<CR>", { desc = "DAP Step Over" })
+map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "DAP Step Into" })
+map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "DAP Step Out" })
+map("n", "<leader>du", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
+
+-- Neotest keymaps
+map("n", "<leader>tn", "<cmd>Neotest run<CR>", { desc = "Run Nearest Test" })
+map("n", "<leader>tf", "<cmd>Neotest run file<CR>", { desc = "Run Test File" })
+map("n", "<leader>ts", "<cmd>Neotest summary<CR>", { desc = "Test Summary" })
