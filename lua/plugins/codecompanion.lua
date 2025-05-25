@@ -6,45 +6,6 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-telescope/telescope.nvim", -- Optional: for slash commands
       { "stevearc/dressing.nvim", opts = {} }, -- Optional: improves vim.ui.select
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        ft = { "markdown", "codecompanion" },
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        config = function()
-          require("render-markdown").setup({
-            enabled = true,
-            file_types = { "markdown", "codecompanion" },
-            render_modes = { "n", "v", "i", "c" },
-            heading = {
-              enabled = true,
-              icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
-              signs = { "󰫢 " }, -- Nerd Font icon for headings
-            },
-            code = {
-              enabled = true,
-              style = "full",
-              sign = true,
-              left_pad = 2,
-              language_pad = 2,
-            },
-            bullet = {
-              enabled = true,
-              icons = { "•", "◦", "▪", "▫" },
-            },
-            checkbox = {
-              enabled = true,
-              checked = { icon = "[x] " }, -- Fixed: Use table format
-              unchecked = { icon = "[ ] " }, -- Fixed: Use table format
-            },
-            latex = {
-              enabled = false, -- Disable LaTeX to avoid warnings
-            },
-            win_options = {
-              conceallevel = { rendered = 2, default = 0 },
-            },
-          })
-        end,
-      },
     },
     config = function()
       require("codecompanion").setup({
