@@ -76,6 +76,16 @@ map("n", "<leader>jsm", "<cmd>JavaSpringBootGenerateModel<CR>", { desc = "Genera
 map("n", "<leader>jss", "<cmd>JavaSpringBootGenerateService<CR>", { desc = "Generate Spring Service" })
 map("n", "<leader>jo", "<cmd>JavaOrganizeImports<CR>", { desc = "Organize Java Imports" })
 map("n", "<leader>jf", "<cmd>JavaFormat<CR>", { desc = "Format Java File" })
+map("n", "<leader>Jr", "<cmd>springboot_nvim.boot_run<CR>", { desc = "Spring Boot Run Project" })
+map("n", "<leader>Jc", "<cmd>springboot_nvim.generate_class<CR>", { desc = "Java Create Class" })
+map("n", "<leader>Ji", "<cmd>springboot_nvim.generate_interface<CR>", { desc = "Java Create Interface" })
+map("n", "<leader>Je", "<cmd>springboot_nvim.generate_enum<CR>", { desc = "Java Create Enum" })
+map("n", "<leader>jn", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "~/Github/Notes/JavaNote.markdown" },
+    prompt_title = "Search JavaNote.md",
+  })
+end, { desc = "Search JavaNote.md" })
 
 -- DAP keymaps
 map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
