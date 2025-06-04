@@ -80,12 +80,32 @@ map("n", "<leader>Jr", "<cmd>springboot_nvim.boot_run<CR>", { desc = "Spring Boo
 map("n", "<leader>Jc", "<cmd>springboot_nvim.generate_class<CR>", { desc = "Java Create Class" })
 map("n", "<leader>Ji", "<cmd>springboot_nvim.generate_interface<CR>", { desc = "Java Create Interface" })
 map("n", "<leader>Je", "<cmd>springboot_nvim.generate_enum<CR>", { desc = "Java Create Enum" })
+
+-- References Notes
 map("n", "<leader>jn", function()
   require("telescope.builtin").live_grep({
-    search_dirs = { "~/Github/Notes/JavaNote.markdown" },
+    search_dirs = { "~/Github/Notes/References/Java/JavaNote.md" },
     prompt_title = "Search JavaNote.md",
   })
 end, { desc = "Search JavaNote.md" })
+map("n", "<leader>pn", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "~/Github/Notes/References/Python/PythonNote.md" },
+    prompt_title = "Search PythonNote.md",
+  })
+end, { desc = "Search PythonNote.md" })
+map("n", "<leader>cpp", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "~/Github/Notes/References/C++/CppNote.md" },
+    prompt_title = "Search CppNote.md",
+  })
+end, { desc = "Search CppNote.md" })
+map("n", "<leader>sql", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "~/Github/Notes/References/MySQL/MySQLNote.md" },
+    prompt_title = "Search MySQLNote.md",
+  })
+end, { desc = "Search MySQLNote.md" })
 
 -- DAP keymaps
 map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
