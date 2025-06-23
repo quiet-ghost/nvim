@@ -34,7 +34,7 @@ return {
                 auto_install = true, -- Assuming you have JAVA_HOME set
               },
               notifications = {
-                dap = false,
+                dap = true,
               },
             })
             local lspconfig = require("lspconfig")
