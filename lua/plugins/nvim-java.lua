@@ -31,7 +31,7 @@ return {
           jdtls = function()
             require("java").setup({
               jdk = {
-                auto_install = false, -- Assuming you have JAVA_HOME set
+                auto_install = true, -- Assuming you have JAVA_HOME set
               },
               notifications = {
                 dap = false,

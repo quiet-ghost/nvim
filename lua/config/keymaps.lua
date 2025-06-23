@@ -66,20 +66,45 @@ vim.api.nvim_create_autocmd("FileType", {
 map("v", "<leader>cx", "<cmd>CodeCompanion fix<CR>", { desc = "Fix selected code" })
 map("v", "<leader>ct", "<cmd>CodeCompanion tests<CR>", { desc = "Generate tests for selected code" })
 
--- Java keymaps
+-- Java Running
 map("n", "<leader>jr", "<cmd>JavaRunnerRunMain<CR>", { desc = "Run Java Main" })
-map("n", "<leader>jt", "<cmd>JavaTestRun<CR>", { desc = "Run Java Test" })
+map("n", "<leader>jrs", "<cmd>JavaRunnerStopMain<CR>", { desc = "Stop Java Main" })
+map("n", "<leader>jrl", "<cmd>JavaRunnerToggleLogs<CR>", { desc = "Toggle Java Runner Logs" })
+
+-- Java Testing
+map("n", "<leader>jtc", "<cmd>JavaTestRunCurrentClass<CR>", { desc = "Run Current Test Class" })
+map("n", "<leader>jtm", "<cmd>JavaTestRunCurrentMethod<CR>", { desc = "Run Current Test Method" })
+map("n", "<leader>jtdc", "<cmd>JavaTestDebugCurrentClass<CR>", { desc = "Debug Current Test Class" })
+map("n", "<leader>jtdm", "<cmd>JavaTestDebugCurrentMethod<CR>", { desc = "Debug Current Test Method" })
+map("n", "<leader>jtr", "<cmd>JavaTestViewLastReport<CR>", { desc = "View Last Test Report" })
+
+-- Java DAP
 map("n", "<leader>jd", "<cmd>JavaDapConfig<CR>", { desc = "Configure Java DAP" })
-map("n", "<leader>jsr", "<cmd>JavaSpringBootRun<CR>", { desc = "Run Spring Boot Application" })
-map("n", "<leader>jsc", "<cmd>JavaSpringBootGenerateController<CR>", { desc = "Generate Spring Controller" })
-map("n", "<leader>jsm", "<cmd>JavaSpringBootGenerateModel<CR>", { desc = "Generate Spring Model" })
-map("n", "<leader>jss", "<cmd>JavaSpringBootGenerateService<CR>", { desc = "Generate Spring Service" })
-map("n", "<leader>jo", "<cmd>JavaOrganizeImports<CR>", { desc = "Organize Java Imports" })
-map("n", "<leader>jf", "<cmd>JavaFormat<CR>", { desc = "Format Java File" })
-map("n", "<leader>Jr", "<cmd>springboot_nvim.boot_run<CR>", { desc = "Spring Boot Run Project" })
-map("n", "<leader>Jc", "<cmd>springboot_nvim.generate_class<CR>", { desc = "Java Create Class" })
-map("n", "<leader>Ji", "<cmd>springboot_nvim.generate_interface<CR>", { desc = "Java Create Interface" })
-map("n", "<leader>Je", "<cmd>springboot_nvim.generate_enum<CR>", { desc = "Java Create Enum" })
+
+-- Java Refactoring
+map("n", "<leader>jrv", "<cmd>JavaRefactorExtractVariable<CR>", { desc = "Extract Variable" })
+map("n", "<leader>jrc", "<cmd>JavaRefactorExtractConstant<CR>", { desc = "Extract Constant" })
+map("n", "<leader>jrm", "<cmd>JavaRefactorExtractMethod<CR>", { desc = "Extract Method" })
+map("n", "<leader>jrf", "<cmd>JavaRefactorExtractField<CR>", { desc = "Extract Field" })
+
+-- Java Build
+map("n", "<leader>jbb", "<cmd>JavaBuildBuildWorkspace<CR>", { desc = "Build Workspace" })
+map("n", "<leader>jbc", "<cmd>JavaBuildCleanWorkspace<CR>", { desc = "Clean Workspace" })
+
+-- Java Settings
+map("n", "<leader>jsr", "<cmd>JavaSettingsChangeRuntime<CR>", { desc = "Change Java Runtime" })
+
+-- Java Profiles
+map("n", "<leader>jp", "<cmd>JavaProfile<CR>", { desc = "Java Profiles" })
+
+-- DAP keymaps
+map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
+map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "DAP Toggle Breakpoint" })
+map("n", "<leader>ds", "<cmd>DapStepOver<CR>", { desc = "DAP Step Over" })
+map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "DAP Step Into" })
+map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "DAP Step Out" })
+map("n", "<leader>du", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
+map("n", "<leader>ts", "<cmd>Neotest summary<CR>", { desc = "Test Summary" })
 
 -- References Notes
 map("n", "<leader>jn", function()
@@ -106,16 +131,3 @@ map("n", "<leader>sql", function()
     prompt_title = "Search MySQLNote.md",
   })
 end, { desc = "Search MySQLNote.md" })
-
--- DAP keymaps
-map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
-map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "DAP Toggle Breakpoint" })
-map("n", "<leader>ds", "<cmd>DapStepOver<CR>", { desc = "DAP Step Over" })
-map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "DAP Step Into" })
-map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "DAP Step Out" })
-map("n", "<leader>du", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
-
--- Neotest keymaps
-map("n", "<leader>tn", "<cmd>Neotest run<CR>", { desc = "Run Nearest Test" })
-map("n", "<leader>tf", "<cmd>Neotest run file<CR>", { desc = "Run Test File" })
-map("n", "<leader>ts", "<cmd>Neotest summary<CR>", { desc = "Test Summary" })
