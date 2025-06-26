@@ -97,18 +97,36 @@ map("n", "<leader>jsr", "<cmd>JavaSettingsChangeRuntime<CR>", { desc = "Change J
 -- Java Profiles
 map("n", "<leader>jp", "<cmd>JavaProfile<CR>", { desc = "Java Profiles" })
 
--- Java Notes Search
-map("n", "<leader>jn", function()
-  require("telescope.builtin").live_grep({
-    search_dirs = { "~/Github/Notes/JavaNote.markdown" },
-    prompt_title = "Search JavaNote.md",
-  })
-end, { desc = "Search JavaNote.md" })
-
 -- DAP keymaps
-map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
-map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "DAP Toggle Breakpoint" })
+map("n", "<F2>", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
+map("n", "<C-b>", "<cmd>DapToggleBreakpoint<CR>", { desc = "DAP Toggle Breakpoint" })
 map("n", "<leader>ds", "<cmd>DapStepOver<CR>", { desc = "DAP Step Over" })
 map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "DAP Step Into" })
 map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "DAP Step Out" })
-map("n", "<leader>du", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
+map("n", "<F1>", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
+
+-- References Notes
+map("n", "<leader>jn", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "~/Github/Notes/References/Java/JavaNote.md" },
+    prompt_title = "Search JavaNote.md",
+  })
+end, { desc = "Search JavaNote.md" })
+map("n", "<leader>pn", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "~/Github/Notes/References/Python/PythonNote.md" },
+    prompt_title = "Search PythonNote.md",
+  })
+end, { desc = "Search PythonNote.md" })
+map("n", "<leader>cpp", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "~/Github/Notes/References/C++/CppNote.md" },
+    prompt_title = "Search CppNote.md",
+  })
+end, { desc = "Search CppNote.md" })
+map("n", "<leader>sql", function()
+  require("telescope.builtin").live_grep({
+    search_dirs = { "~/Github/Notes/References/MySQL/MySQLNote.md" },
+    prompt_title = "Search MySQLNote.md",
+  })
+end, { desc = "Search MySQLNote.md" })

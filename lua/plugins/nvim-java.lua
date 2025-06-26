@@ -39,6 +39,27 @@ return {
             })
             local lspconfig = require("lspconfig")
             lspconfig.jdtls.setup({})
+
+            -- Configure DAP for Java
+            local dap = require("dap")
+            dap.configurations.java = {
+              {
+                type = "java",
+                request = "launch",
+                name = "Launch Java",
+                mainClass = "${fileBasenameNoExtension}",
+                classPaths = { vim.fn.getcwd() },
+                javaExec = java_exec, -- Use detected JDK
+                projectName = "${fileBasenameNoExtension}",
+              },
+              {
+                type = "java",
+                request = "attach",
+                name = "Debug (Attach) - Remote",
+                hostName = "127.0.0.1",
+                port = 1326,
+              },
+            }
             return true -- Skip mason-lspconfig's default jdtls setup
           end,
         },
