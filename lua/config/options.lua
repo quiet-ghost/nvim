@@ -33,6 +33,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.laststatus = 3
 vim.g.lazyvim_markdown = false
 vim.opt.conceallevel = 2
+vim.opt.shellslash = true
 
 -- Terminal setup
 local function setup_terminal()

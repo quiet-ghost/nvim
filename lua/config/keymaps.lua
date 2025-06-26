@@ -98,12 +98,13 @@ map("n", "<leader>jsr", "<cmd>JavaSettingsChangeRuntime<CR>", { desc = "Change J
 map("n", "<leader>jp", "<cmd>JavaProfile<CR>", { desc = "Java Profiles" })
 
 -- DAP keymaps
-map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
-map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "DAP Toggle Breakpoint" })
-map("n", "<leader>ds", "<cmd>DapStepOver<CR>", { desc = "DAP Step Over" })
+map("n", "<F2>", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
+map("n", "<C-b>", "<cmd>DapToggleBreakpoint<CR>", { desc = "DAP Toggle Breakpoint" })
+map("n", "<F3>", "<cmd>DapStepOver<CR>", { desc = "DAP Step Over" })
 map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "DAP Step Into" })
 map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "DAP Step Out" })
-map("n", "<leader>du", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
+map("n", "<F1>", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
+map("n", "<F5", "<cmd>DapTerminate<CR>", { desc = "DAP Terminate" })
 map("n", "<leader>ts", "<cmd>Neotest summary<CR>", { desc = "Test Summary" })
 
 -- References Notes
