@@ -10,11 +10,24 @@ return {
     "nvim-java/nvim-java-refactor",
     "MunifTanjim/nui.nvim",
     "mfussenegger/nvim-dap",
+    "theHamsta/nvim-dap-virtual-text",
     {
       "rcarriga/nvim-dap-ui",
       dependencies = { "nvim-neotest/nvim-nio" },
       config = function()
         require("dapui").setup()
+        require("nvim-dap-virtual-text").setup({
+          enabled = true, -- Enable the plugin
+          enabled_commands = true, -- Create commands like :DapVirtualTextEnable
+          highlight_changed_variables = true, -- Highlight changed variables
+          highlight_new_as_changed = true, -- Highlight new variables as changed
+          show_stop_reason = true, -- Show why DAP stopped (e.g., breakpoint)
+          commented = false, -- Show virtual text as comments (e.g., // value)
+          virt_text_pos = "eol", -- Position of virtual text ("eol" or "inline")
+          all_frames = false, -- Show virtual text for all stack frames
+          virt_lines = false, -- Use virtual lines instead of virtual text
+          virt_text_win_col = nil, -- Set to a number to fix column position
+        })
       end,
     },
     {
