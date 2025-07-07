@@ -110,25 +110,37 @@ map("n", "<leader>ts", "<cmd>Neotest summary<CR>", { desc = "Test Summary" })
 -- References Notes
 map("n", "<leader>jn", function()
   require("telescope.builtin").live_grep({
-    search_dirs = { "~/Github/Notes/References/Java/JavaNote.md" },
+    search_dirs = { "~/personal/Notes/References/Java/JavaNote.md" },
     prompt_title = "Search JavaNote.md",
   })
 end, { desc = "Search JavaNote.md" })
 map("n", "<leader>pn", function()
   require("telescope.builtin").live_grep({
-    search_dirs = { "~/Github/Notes/References/Python/PythonNote.md" },
+    search_dirs = { "~/personal/Notes/References/Python/PythonNote.md" },
     prompt_title = "Search PythonNote.md",
   })
 end, { desc = "Search PythonNote.md" })
 map("n", "<leader>cpp", function()
   require("telescope.builtin").live_grep({
-    search_dirs = { "~/Github/Notes/References/C++/CppNote.md" },
+    search_dirs = { "~/personal/Notes/References/C++/CppNote.md" },
     prompt_title = "Search CppNote.md",
   })
 end, { desc = "Search CppNote.md" })
 map("n", "<leader>sql", function()
   require("telescope.builtin").live_grep({
-    search_dirs = { "~/Github/Notes/References/MySQL/MySQLNote.md" },
+    search_dirs = { "~/personal/Notes/References/MySQL/MySQLNote.md" },
     prompt_title = "Search MySQLNote.md",
   })
 end, { desc = "Search MySQLNote.md" })
+
+-- tmux session management with telescope (matching terminal bindings)
+map("n", "<A-w>", function() require("utils.tmux-manager").sessions() end, { desc = "tmux sessions" })
+map("n", "<A-s>", function() require("utils.tmux-manager").sessionizer() end, { desc = "tmux project sessionizer" })
+
+-- tmux sessionizer (project-based session creation)
+map("n", "<leader>tp", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "tmux project sessionizer" })
+
+-- Manual tmux session switch (backup)
+vim.api.nvim_create_user_command("TmuxSwitch", function(opts)
+  vim.fn.system("tmux switch-client -t " .. opts.args)
+end, { nargs = 1, desc = "Switch to tmux session" })
