@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+local map = vim.keymap.set
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -35,6 +36,12 @@ vim.g.lazyvim_markdown = false
 vim.opt.conceallevel = 2
 vim.opt.shellslash = true
 
+--Nvim navigation
+-- map("n", "<C-h>", ":wincmd h<cr>")
+-- map("n", "<C-j>", ":wincmd j<cr>")
+-- map("n", "<C-k>", ":wincmd k<cr>")
+-- map("n", "<C-l>", ":wincmd l<cr>")
+
 -- Terminal setup
 local function setup_terminal()
   local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
@@ -45,7 +52,10 @@ local function setup_terminal()
   else
     vim.opt.shell = "/bin/zsh"
     vim.opt.shellcmdflag = "-c"
-    vim.opt.shellxquote = "'"
+    vim.opt.shellquote = ""
+    vim.opt.shellxquote = ""
+    -- Fix PATH for shell commands
+    vim.env.PATH = "/home/ghost-desktop/.local/bin:/home/ghost/.opencode/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/nvim:/home/ghost-desktop/go/bin:/usr/bin"
   end
 end
 

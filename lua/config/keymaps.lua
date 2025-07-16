@@ -2,13 +2,6 @@ local map = vim.keymap.set
 
 -- General keymaps
 map("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw" })
-map("n", "<m-n>", function()
-  Snacks.explorer()
-end, { desc = "Snacks Explorer" })
-map("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Move to below window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Move to above window" })
-map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 --- Special keymaps
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" }) -- Move selected lines down
@@ -47,11 +40,11 @@ map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find TODOs" })
 map("n", "<C-n>", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
 
 -- CodeCompanion keymaps
-map("n", "<leader>aa", "<cmd>CodeCompanionChat<CR>", { desc = "Open CodeCompanion chat" })
-map("n", "<leader>ap", "<cmd>CodeCompanionActions<CR>", { desc = "CodeCompanion actions palette" })
-map("v", "<leader>ae", "<cmd>CodeCompanion explain<CR>", { desc = "Explain selected code" })
-map("v", "<leader>af", "<cmd>CodeCompanion fix<CR>", { desc = "Fix selected code" })
-map("v", "<leader>ar", "<cmd>CodeCompanion refactor<CR>", { desc = "Refactor selected code" })
+-- map("n", "<leader>aa", "<cmd>CodeCompanionChat<CR>", { desc = "Open CodeCompanion chat" })
+-- map("n", "<leader>ap", "<cmd>CodeCompanionActions<CR>", { desc = "CodeCompanion actions palette" })
+-- map("v", "<leader>ae", "<cmd>CodeCompanion explain<CR>", { desc = "Explain selected code" })
+-- map("v", "<leader>af", "<cmd>CodeCompanion fix<CR>", { desc = "Fix selected code" })
+-- map("v", "<leader>ar", "<cmd>CodeCompanion refactor<CR>", { desc = "Refactor selected code" })
 
 -- CodeCompanion chat buffer keymaps
 vim.api.nvim_create_autocmd("FileType", {
@@ -101,11 +94,13 @@ map("n", "<leader>jp", "<cmd>JavaProfile<CR>", { desc = "Java Profiles" })
 map("n", "<F2>", "<cmd>DapContinue<CR>", { desc = "DAP Continue" })
 map("n", "<C-b>", "<cmd>DapToggleBreakpoint<CR>", { desc = "DAP Toggle Breakpoint" })
 map("n", "<F3>", "<cmd>DapStepOver<CR>", { desc = "DAP Step Over" })
-map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "DAP Step Into" })
+map("n", "<F4>", "<cmd>DapStepInto<CR>", { desc = "DAP Step Into" })
 map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "DAP Step Out" })
 map("n", "<F1>", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
 map("n", "<F5", "<cmd>DapTerminate<CR>", { desc = "DAP Terminate" })
-map("n", "<leader>ts", "<cmd>Neotest summary<CR>", { desc = "Test Summary" })
+map("n", "<leader>ts", function()
+  require("neotest").summary.toggle()
+end, { desc = "Toggle Test Summary" })
 
 -- References Notes
 map("n", "<leader>jn", function()
@@ -134,11 +129,15 @@ map("n", "<leader>sql", function()
 end, { desc = "Search MySQLNote.md" })
 
 -- tmux session management with telescope (matching terminal bindings)
-map("n", "<A-w>", function() require("utils.tmux-manager").sessions() end, { desc = "tmux sessions" })
-map("n", "<A-s>", function() require("utils.tmux-manager").sessionizer() end, { desc = "tmux project sessionizer" })
-
+-- map("n", "<A-w>", function() require("utils.tmux-manager").sessions() end, { desc = "tmux sessions" })
+-- map("n", "<A-s>", function() require("utils.tmux-manager").sessionizer() end, { desc = "tmux project sessionizer" })
 -- tmux sessionizer (project-based session creation)
-map("n", "<leader>tp", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "tmux project sessionizer" })
+-- map("n", "<leader>tp", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "tmux project sessionizer" })
+
+-- telescope-tmux-manager plugin (custom popup)
+map("n", "<A-w>", function()
+  require("telescope").extensions.mux_manager.sessions()
+end, { desc = "Tmux Manager" })
 
 -- Manual tmux session switch (backup)
 vim.api.nvim_create_user_command("TmuxSwitch", function(opts)

@@ -57,9 +57,14 @@ return {
               vim.fn.glob(mason_registry.get_package("java-test"):get_install_path() .. "/extension/server/*.jar"),
             }
             -- Detect SDKMAN or system JDKs
+            local sdkman_dir = os.getenv("SDKMAN_DIR")
             local java_home = os.getenv("JAVA_HOME")
-              or vim.fn.getenv("SDKMAN_DIR")
-                and vim.fn.glob(vim.fn.getenv("SDKMAN_DIR") .. "/candidates/java/current")
+            if not java_home and sdkman_dir then
+              local sdkman_java = vim.fn.glob(sdkman_dir .. "/candidates/java/current")
+              if sdkman_java and sdkman_java ~= "" then
+                java_home = sdkman_java
+              end
+            end
             local java_exec = java_home and (java_home .. "/bin/java") or "java"
             require("java").setup({
               jdk = {
@@ -81,20 +86,13 @@ return {
                     runtimes = {
                       {
                         name = "JavaSE-17",
-                        path = vim.fn.glob("/usr/lib/jvm/java-17-openjdk")
-                          or vim.fn.glob(vim.fn.getenv("SDKMAN_DIR") .. "/candidates/java/17.0.8-tem"), -- Adjust paths
+                        path = "/usr/lib/jvm/java-17-openjdk",
                         default = true,
                       },
                       {
-                        name = "JavaSE-21",
-                        path = vim.fn.glob("/usr/lib/jvm/java-21-openjdk")
-                          or vim.fn.glob(vim.fn.getenv("SDKMAN_DIR") .. "/candidates/java/21.0.7-tem"), -- Adjust paths
+                        name = "JavaSE-21", 
+                        path = "/usr/lib/jvm/java-21-openjdk",
                         default = false,
-                      },
-                      {
-                        name = "JavaSE-24",
-                        path = vim.fn.glob("/usr/lib/jvm/java-24-openjdk")
-                          or vim.fn.glob(vim.fn.getenv("SDKMAN_DIR") .. "/candidates/java/24.0.1-tem"),
                       },
                     },
                   },
@@ -109,7 +107,7 @@ return {
                 request = "launch",
                 name = "Launch Java",
                 mainClass = "${fileBasenameNoExtension}",
-                classPaths = { vim.fn.getcwd() },
+                classPaths = { "${workspaceFolder}", vim.fn.getcwd() },
                 javaExec = java_exec, -- Use detected JDK
                 projectName = "${fileBasenameNoExtension}",
               },
