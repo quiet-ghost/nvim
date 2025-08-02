@@ -68,7 +68,7 @@ return {
             local java_exec = java_home and (java_home .. "/bin/java") or "java"
             require("java").setup({
               jdk = {
-                auto_install = false,
+                auto_install = true,
                 path = java_exec,
               },
               notifications = {
