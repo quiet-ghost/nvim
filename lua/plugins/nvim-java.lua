@@ -68,7 +68,7 @@ return {
             local java_exec = java_home and (java_home .. "/bin/java") or "java"
             require("java").setup({
               jdk = {
-                auto_install = true,
+                auto_install = false,
                 path = java_exec,
               },
               notifications = {
@@ -90,7 +90,7 @@ return {
                         default = true,
                       },
                       {
-                        name = "JavaSE-21", 
+                        name = "JavaSE-21",
                         path = "/usr/lib/jvm/java-21-openjdk",
                         default = false,
                       },
