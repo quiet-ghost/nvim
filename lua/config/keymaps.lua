@@ -42,6 +42,9 @@ map("n", "<C-n>", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
 -- Basic worktree commands
 map("n", "<C-m>", "<cmd>Worktrees<cr>", { desc = "Git worktrees" })
 
+-- MCPHub
+map("n", "<leader>mc", "<cmd>MCPHub<CR>", { desc = "Start MCPHub" })
+
 -- CodeCompanion keymaps
 -- map("n", "<leader>aa", "<cmd>CodeCompanionChat<CR>", { desc = "Open CodeCompanion chat" })
 -- map("n", "<leader>ap", "<cmd>CodeCompanionActions<CR>", { desc = "CodeCompanion actions palette" })
