@@ -27,8 +27,8 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<M-n>"] = cmp.mapping.select_next_item(),
           ["<M-p>"] = cmp.mapping.select_prev_item(),
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-e>"] = cmp.mapping.abort(),
+          ["<M-CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<M-e>"] = cmp.mapping.abort(),
         }),
         sources = {
           { name = "nvim_lsp" },

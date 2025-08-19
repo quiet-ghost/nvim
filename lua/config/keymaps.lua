@@ -40,7 +40,7 @@ map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find TODOs" })
 map("n", "<C-n>", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
 
 -- Basic worktree commands
-map("n", "<C-m>", "<cmd>Worktrees<cr>", { desc = "Git worktrees" })
+map("n", "<M-m>", "<cmd>Worktrees<cr>", { desc = "Git worktrees" })
 
 -- MCPHub
 map("n", "<leader>mc", "<cmd>MCPHub<CR>", { desc = "Start MCPHub" })

@@ -65,7 +65,7 @@ return {
                 java_home = sdkman_java
               end
             end
-            local java_exec = java_home and (java_home .. "/bin/java") or "java"
+            local java_exec = java_home and (java_home .. "/bin/java") or "/usr/lib/jvm/liberica-jdk-17-full/bin/java"
             require("java").setup({
               jdk = {
                 auto_install = true,
@@ -86,13 +86,8 @@ return {
                     runtimes = {
                       {
                         name = "JavaSE-17",
-                        path = "/usr/lib/jvm/java-17-openjdk",
+                        path = "/usr/lib/jvm/liberica-jdk-17-full",
                         default = true,
-                      },
-                      {
-                        name = "JavaSE-21",
-                        path = "/usr/lib/jvm/java-21-openjdk",
-                        default = false,
                       },
                     },
                   },
