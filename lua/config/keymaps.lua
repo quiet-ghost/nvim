@@ -134,6 +134,9 @@ map("n", "<leader>sql", function()
   })
 end, { desc = "Search MySQLNote.md" })
 
+--DevDocs
+map("n", "<M-b>", "<cmd>DevdocsOpen<CR>", { desc = "Open DevDocs" })
+
 -- tmux session management with telescope (matching terminal bindings)
 -- map("n", "<A-w>", function() require("utils.tmux-manager").sessions() end, { desc = "tmux sessions" })
 -- map("n", "<A-s>", function() require("utils.tmux-manager").sessionizer() end, { desc = "tmux project sessionizer" })
