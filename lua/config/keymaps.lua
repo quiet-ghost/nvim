@@ -39,6 +39,14 @@ map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find TODOs" })
 -- Undotree
 map("n", "<C-n>", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
 
+-- Java Runtime Management
+map("n", "<leader>jj", function()
+  require("utils.java").pick_jdk()
+end, { desc = "Switch Java Runtime" })
+map("n", "<leader>ji", function()
+  require("utils.java").print_jdks()
+end, { desc = "List Java Runtimes" })
+
 -- Basic worktree commands
 map("n", "<M-m>", "<cmd>Worktrees<cr>", { desc = "Git worktrees" })
 
