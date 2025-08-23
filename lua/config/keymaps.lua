@@ -92,6 +92,8 @@ map("n", "<leader>jbc", "<cmd>JavaBuildCleanWorkspace<CR>", { desc = "Clean Work
 
 -- Java Settings
 map("n", "<leader>jsr", "<cmd>JavaSettingsChangeRuntime<CR>", { desc = "Change Java Runtime" })
+map("n", "<leader>in", "O/**<CR><CR>/<Esc>kA ")
+map("v", "<leader>in", "c/**<CR><CR>/<Esc>kA ")
 
 -- Java Profiles
 map("n", "<leader>jp", "<cmd>JavaProfile<CR>", { desc = "Java Profiles" })

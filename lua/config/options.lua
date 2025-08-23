@@ -55,7 +55,8 @@ local function setup_terminal()
     vim.opt.shellquote = ""
     vim.opt.shellxquote = ""
     -- Fix PATH for shell commands
-    vim.env.PATH = "/home/ghost-desktop/.local/bin:/home/ghost/.opencode/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/nvim:/home/ghost-desktop/go/bin:/usr/bin"
+    vim.env.PATH =
+      "/home/ghost-desktop/.local/bin:/home/ghost/.opencode/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/bin/nvim:/home/ghost-desktop/go/bin:/usr/bin"
   end
 end
 
