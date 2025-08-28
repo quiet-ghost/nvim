@@ -1,6 +1,6 @@
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    vim.cmd("ShowkeysToggle")
-  end,
-  desc = "Auto-start showkeys on Neovim startup",
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     vim.cmd("ShowkeysToggle")
+--   end,
+--   desc = "Auto-start showkeys on Neovim startup",
+-- })
