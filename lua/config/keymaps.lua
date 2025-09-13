@@ -150,3 +150,13 @@ end, { desc = "Tmux Manager" })
 vim.api.nvim_create_user_command("TmuxSwitch", function(opts)
   vim.fn.system("tmux switch-client -t " .. opts.args)
 end, { nargs = 1, desc = "Switch to tmux session" })
+
+
+-- JavaFX keymaps
+map("n", "<leader>jf", function()
+  require("utils.javafx").compile_and_run()
+end, { desc = "Run JavaFX in right tmux pane" })
+
+map("n", "<leader>jc", function()
+  require("utils.javafx").compile_only()
+end, { desc = "Compile Java/JavaFX (check errors)" })
