@@ -82,6 +82,17 @@ map("n", "<leader>jtr", "<cmd>JavaTestViewLastReport<CR>", { desc = "View Last T
 -- Java DAP
 map("n", "<leader>jd", "<cmd>JavaDapConfig<CR>", { desc = "Configure Java DAP" })
 
+-- ============================================
+-- Refactoring Keymaps (Two complementary systems)
+-- ============================================
+
+-- [1] Java-specific refactoring (nvim-java-refactor via JDTLS)
+-- These use <leader>jr prefix for Java-specific operations
+
+-- [2] General refactoring (refactoring.nvim - works with Java and other languages)
+-- These keymaps are defined in plugins/refactoring.lua to avoid syntax issues
+-- Using <leader>r prefix for multi-language refactoring operations
+
 -- Java Refactoring
 map("n", "<leader>jrv", "<cmd>JavaRefactorExtractVariable<CR>", { desc = "Extract Variable" })
 map("n", "<leader>jrc", "<cmd>JavaRefactorExtractConstant<CR>", { desc = "Extract Constant" })
