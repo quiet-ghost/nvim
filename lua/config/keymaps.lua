@@ -4,6 +4,7 @@ local map = vim.keymap.set
 map("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw" })
 
 --- Special keymaps
+map("i", "jj", "<esc>", { desc = "Escape" }) -- Escape
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" }) -- Move selected lines down
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" }) -- Move selected lines up
 
@@ -52,13 +53,6 @@ map("n", "<M-m>", "<cmd>Worktrees<cr>", { desc = "Git worktrees" })
 
 -- MCPHub
 map("n", "<leader>mc", "<cmd>MCPHub<CR>", { desc = "Start MCPHub" })
-
--- CodeCompanion keymaps
--- map("n", "<leader>aa", "<cmd>CodeCompanionChat<CR>", { desc = "Open CodeCompanion chat" })
--- map("n", "<leader>ap", "<cmd>CodeCompanionActions<CR>", { desc = "CodeCompanion actions palette" })
--- map("v", "<leader>ae", "<cmd>CodeCompanion explain<CR>", { desc = "Explain selected code" })
--- map("v", "<leader>af", "<cmd>CodeCompanion fix<CR>", { desc = "Fix selected code" })
--- map("v", "<leader>ar", "<cmd>CodeCompanion refactor<CR>", { desc = "Refactor selected code" })
 
 -- CodeCompanion chat buffer keymaps
 vim.api.nvim_create_autocmd("FileType", {
@@ -146,12 +140,6 @@ end, { desc = "Search MySQLNote.md" })
 
 --DevDocs
 map("n", "<M-b>", "<cmd>DevdocsOpen<CR>", { desc = "Open DevDocs" })
-
--- tmux session management with telescope (matching terminal bindings)
--- map("n", "<A-w>", function() require("utils.tmux-manager").sessions() end, { desc = "tmux sessions" })
--- map("n", "<A-s>", function() require("utils.tmux-manager").sessionizer() end, { desc = "tmux project sessionizer" })
--- tmux sessionizer (project-based session creation)
--- map("n", "<leader>tp", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "tmux project sessionizer" })
 
 -- telescope-tmux-manager plugin (custom popup)
 map("n", "<A-w>", function()

@@ -51,7 +51,7 @@ return {
     vim.api.nvim_set_hl(0, "Operator", { fg = "#ee5d43" }) -- Operators (red)
     vim.api.nvim_set_hl(0, "PreProc", { fg = "#c74ded" }) -- Preprocessor (purple)
     vim.api.nvim_set_hl(0, "Special", { fg = "#00e8c6" }) -- Special (cyan, e.g., Python source)
-    vim.api.nvim_set_hl(0, "Tag", { fg = "#f92672" }) -- Tags (hot pink)
+    vim.api.nvim_set_hl(0, "Tag", { fg = "#00e8c6" }) -- Tags (cyan)
     -- vim.api.nvim_set_hl(0, "Title", { fg = "#ff00aa" }) -- Headings (pink)
     vim.api.nvim_set_hl(0, "Error", { fg = "#ee5d43" }) -- Errors (red)
     vim.api.nvim_set_hl(0, "Underlined", { fg = "#3B79C7", underline = true }) -- Links/underlined (blue)
@@ -67,6 +67,49 @@ return {
     vim.api.nvim_set_hl(0, "@number", { fg = "#f39c12" })
     vim.api.nvim_set_hl(0, "@operator", { fg = "#ee5d43" })
     vim.api.nvim_set_hl(0, "@property", { fg = "#f39c12" }) -- Object properties (orange)
+    
+    -- Additional Treesitter groups
+    vim.api.nvim_set_hl(0, "@comment", { fg = "#6d6d70", italic = true })
+    vim.api.nvim_set_hl(0, "@boolean", { fg = "#00e8c6" }) -- Cyan for boolean values
+    vim.api.nvim_set_hl(0, "@conditional", { fg = "#c74ded", italic = true }) -- Purple like keywords
+    vim.api.nvim_set_hl(0, "@loop", { fg = "#c74ded", italic = true }) -- Purple like keywords
+    vim.api.nvim_set_hl(0, "@include", { fg = "#c74ded" }) -- Purple for imports
+    vim.api.nvim_set_hl(0, "@tag", { fg = "#00e8c6" }) -- Cyan for tags
+    vim.api.nvim_set_hl(0, "@constructor", { fg = "#FFE66D" }) -- Yellow like functions
+    vim.api.nvim_set_hl(0, "@method", { fg = "#FFE66D" }) -- Yellow like functions
+
+    -- LSP Diagnostic colors
+    vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#ee5d43" }) -- Red
+    vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#FFE66D" }) -- Yellow
+    vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#7cb7ff" }) -- Blue
+    vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#00e8c6" }) -- Cyan
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = "#ee5d43" })
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = "#FFE66D" })
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true, sp = "#7cb7ff" })
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true, sp = "#00e8c6" })
+
+    -- Git/Diff colors
+    vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#2d4a2b" }) -- Dark green background
+    vim.api.nvim_set_hl(0, "DiffChange", { bg = "#3d3522" }) -- Dark yellow/brown background
+    vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#4a2b2b" }) -- Dark red background
+    vim.api.nvim_set_hl(0, "DiffText", { bg = "#4d4033" }) -- Slightly brighter change
+    vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#96E072" }) -- Green
+    vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#FFE66D" }) -- Yellow
+    vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#ee5d43" }) -- Red
+
+    -- Search/Replace
+    vim.api.nvim_set_hl(0, "Search", { bg = "#4d4033", fg = "#FFE66D" }) -- Yellow on dark bg
+    vim.api.nvim_set_hl(0, "IncSearch", { bg = "#FFE66D", fg = "#23262E" }) -- Inverted yellow
+    vim.api.nvim_set_hl(0, "CurSearch", { bg = "#ff00aa", fg = "#23262E" }) -- Magenta for current
+    vim.api.nvim_set_hl(0, "Substitute", { bg = "#4a2b2b", fg = "#ee5d43" }) -- Red theme
+
+    -- Additional UI Elements
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#2a2d37" }) -- Subtle line highlight
+    vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#2a2d37" }) -- Same as cursor line
+    vim.api.nvim_set_hl(0, "Folded", { bg = "#2a2d37", fg = "#746f77" }) -- Gray on subtle bg
+    vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#746f77" }) -- Gray
+    vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE", fg = "#746f77" }) -- Transparent bg
+    vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2a2d37" }) -- Subtle column marker
 
     -- Terminal Colors (from terminal.ansi* in VSCode)
     vim.g.terminal_color_0 = "#23262E"  -- Black
