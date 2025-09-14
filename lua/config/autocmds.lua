@@ -45,4 +45,3 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 })
 
 -- Add LSP inlay hints fix
-require("config.lsp-inlay-hints").setup()
