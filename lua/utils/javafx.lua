@@ -1,5 +1,33 @@
 local M = {}
 
+-- Helper function to find pom.xml in current or parent directories
+local function find_pom_xml(start_dir)
+  local dir = start_dir
+  local home = vim.fn.expand("~")
+  
+  while dir ~= "/" and dir ~= home do
+    local pom_path = dir .. "/pom.xml"
+    if vim.fn.filereadable(pom_path) == 1 then
+      return dir, pom_path
+    end
+    dir = vim.fn.fnamemodify(dir, ":h")
+  end
+  
+  return nil, nil
+end
+
+-- Helper function to check if pom.xml contains JavaFX dependencies
+local function is_javafx_maven_project(pom_path)
+  local file = io.open(pom_path, "r")
+  if not file then return false end
+  
+  local content = file:read("*all")
+  file:close()
+  
+  -- Check for JavaFX dependencies or plugins
+  return content:match("javafx") ~= nil
+end
+
 function M.compile_and_run()
   local file = vim.fn.expand("%:p")
   local filename = vim.fn.expand("%:t")
@@ -16,8 +44,27 @@ function M.compile_and_run()
   -- Check if we're in tmux
   local in_tmux = os.getenv("TMUX") ~= nil
   
-  if in_tmux then
-    -- Read file to check if it's JavaFX and find main class
+  if not in_tmux then
+    vim.notify("Not in tmux! Run from terminal instead.", vim.log.levels.ERROR)
+    return
+  end
+  
+  -- Check for Maven project
+  local maven_dir, pom_path = find_pom_xml(dir)
+  
+  if maven_dir and pom_path and is_javafx_maven_project(pom_path) then
+    -- Maven JavaFX project - use mvn javafx:run
+    vim.notify("Maven JavaFX project detected - running with mvn", vim.log.levels.INFO)
+    
+    local tmux_cmd = string.format(
+      [[tmux split-window -h -l 20%% "cd '%s' && echo 'Running Maven JavaFX project...' && mvn clean javafx:run; echo && echo 'Press Enter to close...'; read"]],
+      maven_dir
+    )
+    vim.fn.system(tmux_cmd)
+    vim.notify("Maven JavaFX running from " .. maven_dir, vim.log.levels.INFO)
+    
+  else
+    -- Single file JavaFX or regular Java - use existing logic
     local file_content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
     local is_javafx = file_content:match("import javafx") or file_content:match("extends Application")
     
@@ -30,7 +77,6 @@ function M.compile_and_run()
     
     if main_match then
       -- Find the class that contains main method
-      -- Split content into lines and work backwards from main method
       local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
       local main_line = 0
       
@@ -58,17 +104,17 @@ function M.compile_and_run()
     local java_path = "/usr/lib/jvm/liberica-jdk-17-full/bin/java"
     
     if is_javafx then
-      -- JavaFX program - run in background pane
+      -- Single file JavaFX program - run in background pane
       local tmux_cmd = string.format(
         [[tmux split-window -h -l 20%% "cd '%s' && %s %s && %s %s; echo 'Press Enter to close...'; read"]],
         dir,
         javac_path,
         filename,
         java_path,
-        main_class  -- Use detected main class
+        main_class
       )
       vim.fn.system(tmux_cmd)
-      vim.notify("JavaFX running (class: " .. main_class .. ")", vim.log.levels.INFO)
+      vim.notify("JavaFX running (single file, class: " .. main_class .. ")", vim.log.levels.INFO)
     else
       -- Regular Java program - run in interactive pane
       local tmux_cmd = string.format(
@@ -76,15 +122,13 @@ function M.compile_and_run()
         dir,
         javac_path,
         filename,
-        main_class,  -- Use detected main class for display
+        main_class,
         java_path,
-        main_class   -- Use detected main class for execution
+        main_class
       )
       vim.fn.system(tmux_cmd)
       vim.notify("Java running (class: " .. main_class .. ")", vim.log.levels.INFO)
     end
-  else
-    vim.notify("Not in tmux! Run from terminal instead.", vim.log.levels.ERROR)
   end
 end
 
@@ -100,15 +144,31 @@ function M.compile_only()
   
   vim.cmd("w")
   
-  -- Use Liberica javac for consistency
-  local compile_cmd = string.format(
-    "cd %s && /usr/lib/jvm/liberica-jdk-17-full/bin/javac %s",
-    vim.fn.shellescape(dir),
-    vim.fn.shellescape(filename)
-  )
+  -- Check for Maven project
+  local maven_dir, pom_path = find_pom_xml(dir)
   
-  vim.cmd("split | terminal " .. compile_cmd)
-  vim.cmd("resize 10")  -- Make it smaller since it's just for error checking
+  if maven_dir and pom_path then
+    -- Maven project - use mvn compile
+    vim.notify("Maven project detected - compiling with mvn", vim.log.levels.INFO)
+    
+    local compile_cmd = string.format(
+      "cd %s && mvn compile",
+      vim.fn.shellescape(maven_dir)
+    )
+    
+    vim.cmd("split | terminal " .. compile_cmd)
+    vim.cmd("resize 10")
+  else
+    -- Single file - use javac directly
+    local compile_cmd = string.format(
+      "cd %s && /usr/lib/jvm/liberica-jdk-17-full/bin/javac %s",
+      vim.fn.shellescape(dir),
+      vim.fn.shellescape(filename)
+    )
+    
+    vim.cmd("split | terminal " .. compile_cmd)
+    vim.cmd("resize 10")
+  end
 end
 
 return M
