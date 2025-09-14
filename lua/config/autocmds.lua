@@ -43,3 +43,6 @@ vim.api.nvim_create_autocmd("BufNewFile", {
     vim.api.nvim_win_set_cursor(0, { 11, 8 })
   end,
 })
+
+-- Add LSP inlay hints fix
+require("config.lsp-inlay-hints").setup()
