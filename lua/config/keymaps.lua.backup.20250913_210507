@@ -171,18 +171,3 @@ end, { desc = "Run JavaFX in right tmux pane" })
 map("n", "<leader>jc", function()
   require("utils.javafx").compile_only()
 end, { desc = "Compile Java/JavaFX (check errors)" })
-
--- JavaFX Template Command
-
--- Keybinding for JavaFX template (leader + fx)
-vim.keymap.set("n", "<leader>fx", ":JavaFX<CR>", { desc = "Insert JavaFX template" })
-
--- JavaFX Template Command (uses utils/javafx.lua)
-vim.api.nvim_create_user_command("JavaFX", function()
-  require("utils.javafx").insert_template()
-end, { desc = "Insert JavaFX template" })
-
--- Keybinding for JavaFX template (leader + fx)
-vim.keymap.set("n", "<leader>fx", function()
-  require("utils.javafx").insert_template()
-end, { desc = "Insert JavaFX template" })

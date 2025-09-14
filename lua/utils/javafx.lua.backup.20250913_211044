@@ -171,6 +171,7 @@ function M.compile_only()
   end
 end
 
+return M
 
 function M.insert_template()
   local filename = vim.fn.expand("%:t:r")
