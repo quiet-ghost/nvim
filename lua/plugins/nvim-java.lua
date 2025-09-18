@@ -49,12 +49,11 @@ return {
         },
         setup = {
           jdtls = function()
-            local mason_registry = require("mason-registry")
+            local InstallLocation = require("mason-core.installer.InstallLocation")
+            local location = InstallLocation.global()
             local bundles = {
-              vim.fn.glob(
-                mason_registry.get_package("java-debug-adapter"):get_install_path() .. "/extension/server/*.jar"
-              ),
-              vim.fn.glob(mason_registry.get_package("java-test"):get_install_path() .. "/extension/server/*.jar"),
+              vim.fn.glob(location:package("java-debug-adapter") .. "/extension/server/*.jar"),
+              vim.fn.glob(location:package("java-test") .. "/extension/server/*.jar"),
             }
             -- Detect SDKMAN or system JDKs
             local sdkman_dir = os.getenv("SDKMAN_DIR")

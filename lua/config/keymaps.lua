@@ -162,7 +162,6 @@ vim.api.nvim_create_user_command("TmuxSwitch", function(opts)
   vim.fn.system("tmux switch-client -t " .. opts.args)
 end, { nargs = 1, desc = "Switch to tmux session" })
 
-
 -- JavaFX keymaps
 map("n", "<leader>jf", function()
   require("utils.javafx").compile_and_run()
@@ -178,14 +177,14 @@ map("n", "<leader>fn", function()
   local width = 60
   local height = 1
   local buf = vim.api.nvim_create_buf(false, true)
-  
+
   local ui = vim.api.nvim_list_uis()[1]
   local win_width = ui.width
   local win_height = ui.height
-  
+
   local col = math.floor((win_width - width) / 2)
   local row = math.floor((win_height - height) / 2)
-  
+
   local opts = {
     relative = "editor",
     width = width,
@@ -197,22 +196,22 @@ map("n", "<leader>fn", function()
     title = " Create New File ",
     title_pos = "center",
   }
-  
+
   local win = vim.api.nvim_open_win(buf, true, opts)
-  
+
   -- Set prompt text
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, {""})
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "" })
   vim.api.nvim_buf_set_option(buf, "modifiable", true)
-  
+
   -- Start insert mode
   vim.cmd("startinsert")
-  
+
   -- Set up keymaps for the floating window
   vim.api.nvim_buf_set_keymap(buf, "i", "<CR>", "", {
     callback = function()
       local input = vim.api.nvim_buf_get_lines(buf, 0, -1, false)[1]
       vim.api.nvim_win_close(win, true)
-      
+
       if input and input ~= "" then
         -- Handle paths if user includes them (e.g., src/Animal.java)
         local dir = vim.fn.fnamemodify(input, ":h")
@@ -225,7 +224,7 @@ map("n", "<leader>fn", function()
     noremap = true,
     silent = true,
   })
-  
+
   vim.api.nvim_buf_set_keymap(buf, "i", "<Esc>", "", {
     callback = function()
       vim.api.nvim_win_close(win, true)
@@ -233,7 +232,7 @@ map("n", "<leader>fn", function()
     noremap = true,
     silent = true,
   })
-  
+
   -- Add a placeholder/hint text
   vim.fn.prompt_setprompt(buf, "File name (e.g., Animal.java): ")
 end, { desc = "Create new file" })

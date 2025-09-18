@@ -33,7 +33,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.colorcolumn = "80"
 vim.opt.laststatus = 3
 vim.g.lazyvim_markdown = false
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 2
 vim.opt.shellslash = true
 
 --Nvim navigation

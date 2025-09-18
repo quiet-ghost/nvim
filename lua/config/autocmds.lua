@@ -1,9 +1,3 @@
--- vim.api.nvim_create_autocmd("VimEnter", {
---   callback = function()
---     vim.cmd("ShowkeysToggle")
---   end,
---   desc = "Auto-start showkeys on Neovim startup",
--- })
 vim.api.nvim_create_autocmd("BufNewFile", {
   pattern = "*.java",
   callback = function()
@@ -43,5 +37,3 @@ vim.api.nvim_create_autocmd("BufNewFile", {
     vim.api.nvim_win_set_cursor(0, { 11, 8 })
   end,
 })
-
--- Add LSP inlay hints fix
